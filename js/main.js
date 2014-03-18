@@ -3,21 +3,29 @@
 
 require.config({
   paths: {
+    angular: 'lib/angular.min',
     jquery: 'lib/jquery-1.10.0'
   },
 
   shim: {
-    'lib/lodash': {
-      exports: '_'
-    }
-  }
+    'angular' : {'exports' : 'angular'}
+  },
+
+  priority: [
+    'angular'
+  ]
 });
 
-require(['jquery', 'lib/lodash', 'app'],
-        function ($, _, logLevel, app) {
+//http://code.angularjs.org/1.2.1/docs/guide/bootstrap#overview_deferred-bootstrap
+window.name = "NG_DEFER_BOOTSTRAP!";
+
+require(['angular', 'app'], function (angular, app) {
   'use strict';
 
-  $(document).ready(function () {
-    app.initialize();
+  var $html = angular.element(document.getElementsByTagName('html')[0]);
+
+  angular.element().ready(function() {
+    angular.resumeBootstrap([app['name']]);
   });
+
 });

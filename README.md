@@ -6,4 +6,4 @@ Install SASS:
 
 Watch the directory for style changes:
 
-`sass --watch src/css/sass/styles.scss:src/css/app.css`
+`sass --watch css/sass/styles.scss:css/app.css`
